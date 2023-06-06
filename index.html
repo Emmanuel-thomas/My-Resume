@@ -8,7 +8,37 @@
         integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script>(function(w, d) { w.CollectId = "60bcc5497948c2395d09b410"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.async=true; s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);</script>
+    <script>(function(w, d) { w.CollectId = "60bcc5497948c2395d09b410"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.async=true; s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);
+     
+    function getDuration(startDate) {
+      var start = new Date(startDate); // Starting date
+      var today = new Date(); // Current date
+
+      // Calculate the difference in milliseconds
+      var diff = today - start;
+
+      // Convert milliseconds to years and months
+      var years = Math.floor(diff / (365.25 * 24 * 60 * 60 * 1000));
+      var months = Math.floor((diff % (365.25 * 24 * 60 * 60 * 1000)) / (30.44 * 24 * 60 * 60 * 1000));
+
+      // Adjust years and months if the current date is before the starting date
+      if (today.getMonth() < start.getMonth() || (today.getMonth() === start.getMonth() && today.getDate() < start.getDate())) {
+        years--;
+        if (today.getMonth() < start.getMonth()) {
+          months = 12 - start.getMonth() + today.getMonth();
+        } else {
+          months = today.getMonth() - start.getMonth();
+        }
+      }
+
+      // Update the HTML content with the calculated duration
+      document.getElementById('duration').textContent = years + ' years and ' + months + ' months';
+    }
+
+    // Call the function with the starting date
+    var startDate = '2021-09-20';
+    getDuration(startDate);
+  </script>
 </head>
 
 <body>
@@ -103,9 +133,9 @@
         <div class="right_side">
             <div class="about">
                 <h2 class="title2">Profile</h2>
-                <p>Highly skilled and motivated Python developer with 1 year 8 months of experience specializing in web application development. Proficient in Flask, MongoDB, Agile methodologies, Object-Oriented Programming (OOPs), version control systems, RESTful APIs, and microservices architecture. Passionate about writing clean and efficient code to deliver robust and scalable solutions.
+                <p>Highly skilled and motivated Python developer with <span id="duration"></span> of experience specializing in web application development. Proficient in Flask, MongoDB, Agile methodologies, Object-Oriented Programming (OOPs), version control systems, RESTful APIs, and microservices architecture. Passionate about writing clean and efficient code to deliver robust and scalable solutions.</p>
 
-During my tenure as a Python developer, I have successfully designed and implemented several RESTful APIs using Flask and MongoDB, ensuring seamless integration between front-end and back-end systems. I have a strong understanding of OOP principles, enabling me to create modular and maintainable code structures. Additionally, my experience working in Agile environments has honed my ability to collaborate effectively with cross-functional teams and deliver projects within strict deadlines.</p>
+<p>During my tenure as a Python developer, I have successfully designed and implemented several RESTful APIs using Flask and MongoDB, ensuring seamless integration between front-end and back-end systems. I have a strong understanding of OOP principles, enabling me to create modular and maintainable code structures. Additionally, my experience working in Agile environments has honed my ability to collaborate effectively with cross-functional teams and deliver projects within strict deadlines.</p>
             </div>
             <div class="about">
                 <h2 class="title2">Experience</h2>
